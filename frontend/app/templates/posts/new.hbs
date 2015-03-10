@@ -1,0 +1,13 @@
+<form name="form" {{action "create" on="submit"}} novalidate>
+  {{input type="text" value=model.title placeholder="title" required=""}}
+  <br />
+  {{input type="text" value=model.date placeholder="date" required=""}}
+  <br />
+  <label for="published">
+    {{input type="checkbox" checked=model.published}} Published?
+  </label>
+  <br />
+  {{textarea value=model.body placeholder="body..." class="span5" rows="10" required=""}}
+  <br />
+  <input type="submit" value="Submit" class="btn btn-primary" />
+</form>
