@@ -1,0 +1,12 @@
+form{action 'create' on="submit"} name="form"
+  = input type="text" value=model.title placeholder="title" required=""
+  br
+  = input type="text" value=model.date placeholder="date" required=""
+  br
+  label for="published"
+    = input type="checkbox" checked=model.published
+    | &nbsp; Published?
+  br
+  = textarea value=model.body placeholder="body..." class="span5" rows="10" required=""
+  br
+  input.btnbtn-primary type="submit" value="Submit"

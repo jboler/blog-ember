@@ -1,0 +1,28 @@
+.row
+  .span6
+    = link-to 'posts.new' class="btn btn-primary" | New Post
+    br
+    br
+
+  .span6
+    = input type="text" class="pull-right" id="search-posts" placeholder="filter titles" value=postsFilter
+
+.row
+  table.posts.span12.align-left
+    tr
+      th Date
+      th Title
+      th Published
+      th &nbsp;
+      th &nbsp;
+    each post in posts
+      tr.post
+        td= date-format post.date
+        td
+          = link-to 'post' post
+            = post.title
+        td
+          span.btn.btn-mini{action 'togglePublished' post}= post.published
+        td= link-to 'posts.edit' post class='btn btn-mini' | edit
+        td
+          span.btn.btn-mini.edit{action 'delete' post} delete

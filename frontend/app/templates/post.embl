@@ -1,0 +1,8 @@
+.row
+  .span10
+    .posts
+      .post
+        h2
+          a= post.title
+        h4 Published: {{date-format post.date}}
+        p {{post.body}}

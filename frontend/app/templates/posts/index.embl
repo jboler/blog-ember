@@ -1,0 +1,14 @@
+.row
+  .span9
+    .posts
+      each post in posts
+        .post
+          h2
+            = link-to 'post' post
+              = post.title
+          h4 Published: {{date-format post.date}}
+          p {{post.body}}
+
+  .span3
+    | Search Titles:
+    = input type="text" id="search-posts" value=postsFilter
