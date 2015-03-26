@@ -40,7 +40,7 @@ namespace :deploy do
     end
   end
 
-  before 'deploy:compile_assets', :ember
+  # before 'deploy:compile_assets', :ember
   after :publishing, :restart
 
 end
