@@ -1,6 +1,6 @@
 set :application, 'ember-blog'
 
-set :repo_url, '/home/tenpin/ember-blog.git'
+set :repo_url, 'git@github.com:galatians/blog-ember'
 set :scm, :git
 
 set :branch, :master
@@ -25,6 +25,14 @@ set :keep_releases, 2
 
 namespace :deploy do
 
+  desc 'Build ember'
+  task :ember do
+    on roles(:app), in: :sequence do
+      invoke 'ember-cli:compile'
+      # execute "cd #{release_path.join('tmp/restart.txt')} && ember install && ember build --environment production"
+    end
+  end
+
   desc 'Restart application'
   task :restart do
     on roles(:app), in: :sequence, wait: 5 do
@@ -32,6 +40,7 @@ namespace :deploy do
     end
   end
 
+  before 'deploy:compile_assets', :ember
   after :publishing, :restart
 
 end
