@@ -35,7 +35,7 @@ namespace :deploy do
   desc 'Bower Install'
   task :bower_install do
     on roles(:app), in: :sequence do
-      within 'frontend' do
+      within release_path.join('frontend') do
         execute :bower, 'install --allow-root'
       end
     end
