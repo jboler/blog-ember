@@ -32,6 +32,16 @@ namespace :deploy do
     end
   end
 
+  desc 'Bower Install'
+  task :bower_install do
+    on roles(:app), in: :sequence do
+      within './frontend' {
+        execute :bower, 'install --allow-root'
+      }
+    end
+  end
+
+  before 'ember-cli:compile', :bower_install
   after :publishing, :restart
 
 end
