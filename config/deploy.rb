@@ -23,17 +23,6 @@ set :keep_releases, 2
 # set :pty, true
 # set :default_env, { path: "/opt/ruby/bin:$PATH" }
 
-namespace "ember-cli" do
-
-  desc "Installs each EmberCLI app's dependencies"
-  task install_dependencies: :environment do
-    within './frontend' do
-      execute :bower, 'install --allow-root'
-    end
-  end
-
-end
-
 namespace :deploy do
 
   desc 'Restart application'
@@ -43,16 +32,16 @@ namespace :deploy do
     end
   end
 
-  # desc 'Bower Install'
-  # task :bower_install do
-  #   on roles(:app), in: :sequence do
-  #     within './frontend' do
-  #       execute :bower, 'install --allow-root'
-  #     end
-  #   end
-  # end
+  desc 'Bower Install'
+  task :bower_install do
+    on roles(:app), in: :sequence do
+      within './frontend' do
+        execute :bower, 'install --allow-root'
+      end
+    end
+  end
 
-  # before 'ember-cli:compile', :bower_install
+  before :compile_assets, :bower_install
   after :publishing, :restart
 
 end
